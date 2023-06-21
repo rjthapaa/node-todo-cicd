@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodedeployment
+spec:
+  replicas: 2
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: nodeimage
+  template:
+    metadata:
+      name: nodeimage
+      labels:
+        app: nodeimage
+    spec:
+      containers:
+      - name: nodecontainer
+        image: rjthapaa/nodeimage
+        ports:
+        - containerPort: 8000
